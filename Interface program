@@ -4,14 +4,13 @@
 
 import java.util.*;
 
-// this is the horse class that implements Comparable
+// This is the horse class that implements Comparable
 public class Horse implements Comparable<Horse> {
-    // Attributes of the Horse class
     private String name;
     private int age;
     private double weight;
 
-    //  The Constructor
+    // The Constructor
     public Horse(String name, int age, double weight) {
         this.name = name;
         this.age = age;
@@ -23,49 +22,41 @@ public class Horse implements Comparable<Horse> {
     public int getAge() { return age; }
     public double getWeight() { return weight; }
 
-    // compareTo method from Comparable interface
-    // This determines how one Horse object is compared to another
+    // compareTo method to sort by age
     @Override
     public int compareTo(Horse other) {
-        // Compare horses by age
-        // If you want to sort by name instead, use:
-        // return this.name.compareTo(other.name);
         return Integer.compare(this.age, other.age);
     }
 
     // toString method for easy printing
     @Override
     public String toString() {
-        return "Horse{name='" + name + "', age=" + age + ", weight=" + weight + "}";
+        return String.format("Horse{name='%s', age=%d, weight=%.1f}", name, age, weight);
     }
 
-    // The main method to test the Comparable interface
+    // the main method to test sorting
     public static void main(String[] args) {
-        // This will create an ArrayList of Horse objects
-        ArrayList<Horse> horses = new ArrayList<>();
+        List<Horse> horses = new ArrayList<>();
 
-        // My 10 horses
         horses.add(new Horse("Jack", 5, 900.5));
         horses.add(new Horse("Blaze", 3, 850.0));
         horses.add(new Horse("Rainy", 7, 950.3));
         horses.add(new Horse("Star", 4, 870.2));
-        horses.add(new Horse("gazer", 9, 1000.0));
+        horses.add(new Horse("Gazer", 9, 1000.0));
         horses.add(new Horse("Lucky", 6, 890.8));
         horses.add(new Horse("Comet", 2, 780.5));
         horses.add(new Horse("Ranger", 8, 940.1));
         horses.add(new Horse("Spirit", 1, 760.4));
         horses.add(new Horse("Rocket", 10, 1010.0));
 
-        // Print unsorted list
         System.out.println("=== Horses Before Sorting ===");
         for (Horse h : horses) {
             System.out.println(h);
         }
 
-        // Sort the list using Collections.sort
+        // this sorts by age
         Collections.sort(horses);
 
-        // Print sorted list
         System.out.println("\n=== Horses After Sorting (by Age) ===");
         for (Horse h : horses) {
             System.out.println(h);
